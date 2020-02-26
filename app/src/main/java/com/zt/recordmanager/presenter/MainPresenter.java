@@ -1,0 +1,33 @@
+package com.zt.recordmanager.presenter;
+
+import com.zt.recordmanager.R;
+import com.zt.recordmanager.contract.MainContract;
+import com.zt.recordmanager.model.bean.MainGridBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.faker.repaymodel.mvp.BaseMVPPresenter;
+
+public class MainPresenter extends BaseMVPPresenter<MainContract.View> implements MainContract.Presenter {
+
+    @Override
+    public void initGrid() {
+        List<MainGridBean> datas = new ArrayList<>();
+        MainGridBean d1 = new MainGridBean("查询", R.mipmap.grid_query,R.color.ablue_b, null);
+        MainGridBean d2 = new MainGridBean("盘点", R.mipmap.grid_query,R.color.ablue_b, null);
+        MainGridBean d3 = new MainGridBean("出库", R.mipmap.grid_query,R.color.ablue_b, null);
+        MainGridBean d4 = new MainGridBean("入库", R.mipmap.grid_query,R.color.ablue_b, null);
+        MainGridBean d5 = new MainGridBean("设置", R.mipmap.grid_query,R.color.ablue_b, null);
+        MainGridBean d6 = new MainGridBean("关于", R.mipmap.grid_query,R.color.ablue_b, null);
+
+
+        datas.add(d1);
+        datas.add(d2);
+        datas.add(d3);
+        datas.add(d4);
+        datas.add(d5);
+        datas.add(d6);
+        getView().settingGrid(datas);
+    }
+}
