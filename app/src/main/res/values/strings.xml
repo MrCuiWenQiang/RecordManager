@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">库房档案管理</string>
+
+    <string name="check_scan"> 盘点步骤 \n 1.点击扫描架签（可按手把开关） 扫描柜架标签确定判断位置
+        \n2.位置确定后点击开始盘点（可按手把开关）
+        \n3.盘点结束后点击盘点结束（可按手把开关停止盘点）停止盘点,根据提示上传即可</string>
 </resources>

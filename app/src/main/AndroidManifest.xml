@@ -24,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.QueryActivity" />
+        <activity android:name=".view.CheckActivity" />
     </application>
 
 </manifest>

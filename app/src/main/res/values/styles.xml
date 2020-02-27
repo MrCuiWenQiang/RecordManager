@@ -8,10 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="qmui_tip_dialog_bg">@drawable/dg_back</item>
     </style>
 
     <style name="main_grid_tv">
         <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="hint_text">
+        <item name="android:textColor">@color/openmm</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
     </style>
