@@ -14,12 +14,12 @@ public class MainPresenter extends BaseMVPPresenter<MainContract.View> implement
     @Override
     public void initGrid() {
         List<MainGridBean> datas = new ArrayList<>();
-        MainGridBean d1 = new MainGridBean("查询", R.mipmap.grid_query,R.color.ablue_b, null);
-        MainGridBean d2 = new MainGridBean("盘点", R.mipmap.grid_query,R.color.ablue_b, null);
-        MainGridBean d3 = new MainGridBean("出库", R.mipmap.grid_query,R.color.ablue_b, null);
-        MainGridBean d4 = new MainGridBean("入库", R.mipmap.grid_query,R.color.ablue_b, null);
-        MainGridBean d5 = new MainGridBean("设置", R.mipmap.grid_query,R.color.ablue_b, null);
-        MainGridBean d6 = new MainGridBean("关于", R.mipmap.grid_query,R.color.ablue_b, null);
+        MainGridBean d1 = new MainGridBean("查询", R.mipmap.grid_query,R.color.grid_one, null);
+        MainGridBean d2 = new MainGridBean("盘点", R.mipmap.grid_check,R.color.grid_two, null);
+        MainGridBean d3 = new MainGridBean("出库", R.mipmap.grid_out,R.color.grid_three, null);
+        MainGridBean d4 = new MainGridBean("入库", R.mipmap.grid_in,R.color.grid_five, null);
+        MainGridBean d5 = new MainGridBean("设置", R.mipmap.grid_setting,R.color.grid_four, null);
+        MainGridBean d6 = new MainGridBean("关于", R.mipmap.grid_about,R.color.grid_six, null);
 
 
         datas.add(d1);

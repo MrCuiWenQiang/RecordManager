@@ -56,5 +56,12 @@
     <color name="win_start">#00529B</color>
     <color name="win_end">#B4005099</color>
 
+    <color name="grid_one">#2A80ED</color>
+    <color name="grid_two">#A000A8</color>
+    <color name="grid_three">#BD1B4C</color>
+    <color name="grid_four">#008F01</color>
+    <color name="grid_five">#009AAC</color>
+    <color name="grid_six">#B4005099</color>
+
 
 </resources>

@@ -1,6 +1,7 @@
 package com.zt.recordmanager.view.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,7 +43,8 @@ public class MainGridAdapter extends RecyclerView.Adapter<MainGridAdapter.ViewHo
         MainGridBean data = datas.get(i);
         viewHolder.tv_name.setText(data.getName());
         viewHolder.iv_icon.setBackgroundResource(data.getImage());
-        viewHolder.ll_father.setBackgroundColor(data.getColor());
+        int color = ContextCompat.getColor(viewHolder.itemView.getContext(),data.getColor());
+        viewHolder.ll_father.setBackgroundColor(color);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
