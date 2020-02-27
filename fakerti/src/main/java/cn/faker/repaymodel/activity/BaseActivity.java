@@ -203,12 +203,16 @@ public abstract class BaseActivity extends BaseManagerActivity implements BasicA
         return text.toString();
     }
 
-    protected void showLoading() {
+    protected void showLoading(String msg) {
         dimiss();
         tipDialog = new QMUITipDialog.CustomBuilder(this)
                 .setContent(R.layout.dialog_loading)
                 .create();
         tipDialog.setCancelable(false);
+        if (!TextUtils.isEmpty(msg)){
+            TextView tv_load = tipDialog.findViewById(R.id.tv_load);
+            tv_load.setText(msg);
+        }
         tipDialog.show();
     }
 

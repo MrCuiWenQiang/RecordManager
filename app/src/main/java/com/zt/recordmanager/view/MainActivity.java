@@ -5,10 +5,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.zt.recordmanager.MyApplication;
 import com.zt.recordmanager.R;
 import com.zt.recordmanager.contract.MainContract;
 import com.zt.recordmanager.model.bean.MainGridBean;
 import com.zt.recordmanager.presenter.MainPresenter;
+import com.zt.recordmanager.util.RFIDUtil;
 import com.zt.recordmanager.view.adapter.MainGridAdapter;
 
 import java.util.List;
@@ -42,6 +44,19 @@ public class MainActivity extends BaseMVPAcivity<MainContract.View, MainPresente
     @Override
     public void initData(Bundle savedInstanceState) {
         mPresenter.initGrid();
+        showLoading("正在初始化设备中");
+        RFIDUtil.init(new RFIDUtil.RFIDInitAction() {
+            @Override
+            public void success() {
+                dimiss();
+            }
+
+            @Override
+            public void fail(String msg) {
+                dimiss();
+                showDialog(msg);
+            }
+        });
     }
 
     @Override
@@ -64,5 +79,11 @@ public class MainActivity extends BaseMVPAcivity<MainContract.View, MainPresente
             }
         });
         rv_list.setAdapter(gridAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RFIDUtil.exit();
+        super.onDestroy();
     }
 }
