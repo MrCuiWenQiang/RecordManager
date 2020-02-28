@@ -7,13 +7,15 @@ import android.text.TextUtils;
 
 import com.rscja.deviceapi.RFIDWithUHF;
 
+import cn.faker.repaymodel.util.LogUtil;
 import cn.faker.repaymodel.util.db.DBThreadHelper;
 import cn.faker.repaymodel.util.error.ErrorUtil;
 
 public class RFIDUtil {
     private static RFIDWithUHF mReader;
-    private static Handler mainHandler;
-    private static ReadInventoryCallBack callBack;
+    private Handler mainHandler;
+    private ReadInventoryCallBack callBack;
+    private static Thread jobThread;
 
     /**
      * 初始化
@@ -29,7 +31,7 @@ public class RFIDUtil {
             return;
         }
         if (mReader != null) {
-            DBThreadHelper.startThreadInPool(new DBThreadHelper.ThreadCallback<Boolean>() {
+            jobThread = DBThreadHelper.startThreadInPool(new DBThreadHelper.ThreadCallback<Boolean>() {
                 @Override
                 protected Boolean jobContent() throws Exception {
                     return mReader.init();
@@ -42,6 +44,7 @@ public class RFIDUtil {
                     } else {
                         action.fail("设备初始化失败");
                     }
+                    DBThreadHelper.removeJob(jobThread);
                 }
             });
         }
@@ -70,7 +73,7 @@ public class RFIDUtil {
      *
      * @param action
      */
-    public synchronized final static void readInventory(RFIDReadInventoryAction action) {
+    public void readInventory(RFIDReadInventoryAction action) {
         if (mReader == null) {
             action.fail("设备未初始化");
             return;
@@ -90,7 +93,7 @@ public class RFIDUtil {
             callBack = new ReadInventoryCallBack();
             callBack.setAction(action);
             callBack.handler = mainHandler;
-            DBThreadHelper.startThreadInPool(callBack);
+            jobThread = DBThreadHelper.startThreadInPool(callBack);
         } else {
             mReader.stopInventory();
         }
@@ -99,7 +102,7 @@ public class RFIDUtil {
     /**
      * 停止读取
      */
-    public static void stop() {
+    public void stop() {
         mReader.stopInventory();
         if (callBack != null) {
             callBack.startTAG = false;
@@ -132,7 +135,7 @@ public class RFIDUtil {
     }
 
 
-    private static class ReadInventoryCallBack extends DBThreadHelper.ThreadCallback {
+    private class ReadInventoryCallBack extends DBThreadHelper.ThreadCallback {
 
         private RFIDReadInventoryAction action;
 
@@ -168,7 +171,7 @@ public class RFIDUtil {
 
         @Override
         protected void jobEnd(Object o) {
-
+            DBThreadHelper.removeJob(jobThread);
         }
 
 

@@ -9,7 +9,7 @@ public class CheckContract {
 
         void scanLabel_Fail(String msg);
 
-        void scanNewFile(String tag);
+        void scanNewFile(String tag,int number);
 
         void scanNewFile_fail(String err);
     }

@@ -34,11 +34,11 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
 
     private SparseArray<String> datas;
     public boolean isRunScan = false;//盘点是否在运行中
-
+    private RFIDUtil rfidUtil = new RFIDUtil();
     @Override
     public void scanFile() {
         if (isRunScan) {
-            RFIDUtil.stop();
+            rfidUtil.stop();
             isRunScan = false;
             return;
         }
@@ -47,14 +47,13 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
             datas = new SparseArray<>();
         }
 
-        RFIDUtil.readInventory(new RFIDUtil.RFIDReadInventoryAction() {
+        rfidUtil.readInventory(new RFIDUtil.RFIDReadInventoryAction() {
             @Override
             public void success(String tag) {
-                synchronized (datas) {
                     if (datas.size() == 0) {
                         datas.put(0, tag);
                         if (getView() != null) {
-                            getView().scanNewFile(tag);
+                            getView().scanNewFile(tag,datas.size());
                         }
                         return;
                     }
@@ -70,12 +69,11 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
                     if (index == -1) {
                         datas.put(size, tag);
                         if (getView() != null) {
-                            getView().scanNewFile(tag);
+                            getView().scanNewFile(tag, datas.size());
                         }
                     } else {
 //                    datas.setValueAt(index,tag); 不考虑修改
                     }
-                }
             }
 
             @Override
@@ -91,8 +89,10 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
     public void cleanScan() {
         if (datas != null) {
             datas.clear();
-            RFIDUtil.stop();
             isRunScan = false;
+        }
+        if (rfidUtil!=null){
+            rfidUtil.stop();
         }
     }
 }

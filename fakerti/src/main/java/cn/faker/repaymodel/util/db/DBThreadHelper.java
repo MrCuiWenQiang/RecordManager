@@ -23,7 +23,7 @@ public class DBThreadHelper {
      *
      * @param callback
      */
-    public static final void startThreadInPool(final ThreadCallback callback) {
+    public static final Thread startThreadInPool(final ThreadCallback callback) {
         initHandler();
         Thread job = new Thread(new Runnable() {
             @Override
@@ -49,6 +49,7 @@ public class DBThreadHelper {
             }
         });
         ThreadPoolProxyFactory.getdBWhereThreadPool().excute(job);
+        return job;
     }
 
     /**
@@ -83,6 +84,9 @@ public class DBThreadHelper {
         ThreadPoolProxyFactory.getdbLoadThreadPool().excute(job);
     }
 
+    public static final void removeJob(Thread jobThread){
+        ThreadPoolProxyFactory.getdbLoadThreadPool().remove(jobThread);
+    }
 
     public static abstract class ThreadCallback<T> {
         T t;
