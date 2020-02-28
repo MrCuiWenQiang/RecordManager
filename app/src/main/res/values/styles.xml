@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="qmui_tip_dialog_bg">@drawable/dg_back</item>
+        <!--<item name="qmui_tip_dialog_bg">@drawable/dg_back</item>-->
     </style>
 
     <style name="main_grid_tv">

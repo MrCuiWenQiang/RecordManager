@@ -23,7 +23,12 @@ public class SoundUtil {
         soundMap.put(1, soundPool.load(activity, R.raw.barcodebeep, 1));
         soundMap.put(2, soundPool.load(activity, R.raw.serror, 1));
     }
-
+    public void success(){
+        playSound(1);
+    }
+    public void fail(){
+        playSound(2);
+    }
     /**
      * 播放提示音
      *

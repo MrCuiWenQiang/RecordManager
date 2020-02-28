@@ -102,7 +102,7 @@ public class RFIDUtil {
     public static void stop() {
         mReader.stopInventory();
         if (callBack != null) {
-            callBack.startTAG = true;
+            callBack.startTAG = false;
             callBack = null;
         }
     }
@@ -138,7 +138,7 @@ public class RFIDUtil {
 
         public Handler handler;
 
-        public boolean startTAG = false;
+        public boolean startTAG = true;
 
         public void setAction(RFIDReadInventoryAction action) {
             this.action = action;
