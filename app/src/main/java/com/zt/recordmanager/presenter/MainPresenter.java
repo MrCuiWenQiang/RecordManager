@@ -3,6 +3,7 @@ package com.zt.recordmanager.presenter;
 import com.zt.recordmanager.R;
 import com.zt.recordmanager.contract.MainContract;
 import com.zt.recordmanager.model.bean.MainGridBean;
+import com.zt.recordmanager.view.AboutActivity;
 import com.zt.recordmanager.view.CheckActivity;
 import com.zt.recordmanager.view.QueryActivity;
 
@@ -21,7 +22,7 @@ public class MainPresenter extends BaseMVPPresenter<MainContract.View> implement
         MainGridBean d3 = new MainGridBean("出库", R.mipmap.grid_out,R.color.grid_three, null);
         MainGridBean d4 = new MainGridBean("入库", R.mipmap.grid_in,R.color.grid_five, null);
         MainGridBean d5 = new MainGridBean("设置", R.mipmap.grid_setting,R.color.grid_four, null);
-        MainGridBean d6 = new MainGridBean("关于", R.mipmap.grid_about,R.color.grid_six, null);
+        MainGridBean d6 = new MainGridBean("关于", R.mipmap.grid_about,R.color.grid_six, AboutActivity.class);
 
 
         datas.add(d1);

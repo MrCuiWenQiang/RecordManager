@@ -4,4 +4,7 @@
     <string name="check_scan"> 盘点步骤 \n 1.贴近柜架标签,点击扫描架签（可按一下手把开关） 确定盘点位置
         \n2.位置确定后点击开始盘点（可按一下手把开关开始盘点）
         \n3.盘点结束后点击盘点结束（可按手一下把开关停止盘点）停止盘点,根据提示上传即可</string>
+
+    <string name="start_text">版权所有@山东中图软件技术有限公司</string>
+    <string name="support_text">技术支持:0531-82922921</string>
 </resources>

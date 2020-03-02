@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".view.QueryActivity" />
         <activity android:name=".view.CheckActivity" />
+        <activity android:name=".view.AboutActivity" />
     </application>
 
 </manifest>
