@@ -142,7 +142,7 @@ public class PreferencesUtility {
     public static int getPreferencesAsInt(String fieldName) {
         SharedPreferences preferences = context.getSharedPreferences(fileName,
                 Context.MODE_PRIVATE);
-        int value = preferences.getInt(fieldName, 0);
+        int value = preferences.getInt(fieldName, -1);
         return value;
     }
 

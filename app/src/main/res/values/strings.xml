@@ -4,7 +4,43 @@
     <string name="check_scan"> 盘点步骤 \n 1.贴近柜架标签,点击扫描架签（可按一下手把开关） 确定盘点位置
         \n2.位置确定后点击开始盘点（可按一下手把开关开始盘点）
         \n3.盘点结束后点击盘点结束（可按手一下把开关停止盘点）停止盘点,根据提示上传即可</string>
-
+    <string name="uhf_btn_setpower">设置功率</string>
+    <string name="uhf_title_power">输出功率：</string>
+    <string name="uhf_title_dbm">dBm</string>
     <string name="start_text">版权所有@山东中图软件技术有限公司</string>
     <string name="support_text">技术支持:0531-82922921</string>
+
+    <string name="setting_ip">IP地址：</string>
+    <string name="setting_port">端口号：</string>
+    <string name="setting_http_save">保存地址：</string>
+
+
+    <string-array name="arrayPower" translatable="false">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+    </string-array>
 </resources>

@@ -110,6 +110,22 @@ public class RFIDUtil {
         }
     }
 
+    public static int readPower() {
+        if (mReader != null) {
+            return mReader.getPower();
+        } else {
+            return -1;
+        }
+    }
+
+    public static boolean writePower(int power) {
+        if (mReader != null) {
+            return mReader.setPower(power);
+        } else {
+            return false;
+        }
+    }
+
     public static void exit() {
         if (mReader != null) {
             mReader.free();
