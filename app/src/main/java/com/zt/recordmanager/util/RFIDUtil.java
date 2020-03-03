@@ -61,8 +61,13 @@ public class RFIDUtil {
             return;
         }
         String strUII = mReader.inventorySingleTag();
-        if (!TextUtils.isEmpty(strUII)) {
-            action.success(strUII);
+        if (!TextUtils.isEmpty(strUII)){
+            String strEPC = mReader.convertUiiToEPC(strUII);
+            if (!TextUtils.isEmpty(strEPC)){
+                action.success(strEPC);
+            }else {
+                action.fail("未识别到标签");
+            }
         } else {
             action.fail("未识别到标签");
         }

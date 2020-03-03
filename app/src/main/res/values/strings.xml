@@ -14,6 +14,7 @@
     <string name="setting_port">端口号：</string>
     <string name="setting_http_save">保存地址：</string>
 
+    <string name="out_bt_suc">确认借出</string>
 
     <string-array name="arrayPower" translatable="false">
         <item>5</item>
