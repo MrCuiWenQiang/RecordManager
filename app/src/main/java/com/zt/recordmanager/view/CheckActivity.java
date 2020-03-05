@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
+import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.zt.recordmanager.R;
 import com.zt.recordmanager.contract.CheckContract;
@@ -170,7 +172,7 @@ public class CheckActivity extends BaseMVPAcivity<CheckContract.View, CheckPrese
     public void scanNewFile(String tag, int number) {
         soundUtil.success();
         tv_num.setText(String.valueOf(number));
-        if (bt_update.getVisibility()==View.GONE){
+        if (bt_update.getVisibility() == View.GONE) {
             bt_update.setVisibility(View.VISIBLE);
         }
     }
@@ -184,6 +186,24 @@ public class CheckActivity extends BaseMVPAcivity<CheckContract.View, CheckPrese
     }
 
     @Override
+    public void update_success(String msg) {
+        dimiss();
+        showDialog(msg, new QMUIDialogAction.ActionListener() {
+            @Override
+            public void onClick(QMUIDialog dialog, int index) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void update_Fail(String msg) {
+        dimiss();
+        showDialog(msg);
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_status: {
@@ -191,6 +211,8 @@ public class CheckActivity extends BaseMVPAcivity<CheckContract.View, CheckPrese
                 break;
             }
             case R.id.bt_update: {
+                showLoading("正在上传");
+                mPresenter.updateData();
                 break;
             }
         }

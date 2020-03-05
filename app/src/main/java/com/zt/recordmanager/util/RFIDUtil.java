@@ -183,7 +183,8 @@ public class RFIDUtil {
                         strResult = "";
                     }
                     Message msg = handler.obtainMessage();
-                    msg.obj = strResult + "EPC:" + mReader.convertUiiToEPC(res[1]) + "@" + res[2];
+//                    msg.obj = strResult + "EPC:" + mReader.convertUiiToEPC(res[1]) + "@" + res[2];
+                    msg.obj = mReader.convertUiiToEPC(res[1]) + "@" + res[2];
                     handler.sendMessage(msg);
                 }
             }

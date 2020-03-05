@@ -13,6 +13,7 @@ import cn.faker.repaymodel.net.json.JsonUtil;
 import cn.faker.repaymodel.net.okhttp3.callback.BasicCallback;
 import cn.faker.repaymodel.net.okhttp3.callback.DownLoadFileCallBack;
 import cn.faker.repaymodel.net.okhttp3.callback.DownloadBitmapCallback;
+import cn.faker.repaymodel.net.okhttp3.callback.HttpCallback;
 import cn.faker.repaymodel.net.okhttp3.callback.HttpResponseCallback;
 import cn.faker.repaymodel.net.okhttp3.cookie.Cookie;
 import okhttp3.Call;
@@ -114,6 +115,12 @@ public class HttpHelper {
         callback.setOnFailedAll(onFailedAll);
         Call call = getPostCall(path, object);
         callback.setUrl(path);
+        HttpManager.addCall(path, call);
+        call.enqueue(callback);
+    }
+
+    public static void post(String path, Object object, HttpCallback callback) {
+        Call call = getPostCall(path, object);
         HttpManager.addCall(path, call);
         call.enqueue(callback);
     }

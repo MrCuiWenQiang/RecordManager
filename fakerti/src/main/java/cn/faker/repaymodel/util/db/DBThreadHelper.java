@@ -106,4 +106,9 @@ public class DBThreadHelper {
             mainHandler = new Handler(Looper.getMainLooper());
         }
     }
+
+    public static Handler getMainHandler(){
+        initHandler();
+        return  mainHandler;
+    }
 }

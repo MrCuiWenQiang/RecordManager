@@ -56,6 +56,9 @@ public abstract class HttpCallback implements Callback {
 
                     @Override
                     public void run() {
+                        result = result.replace("\\\"","\"");
+                        result = result.replace("\"[","[");
+                        result = result.replace("]\"","]");
                 onSuccess(result);     }
                 });
             } else {
