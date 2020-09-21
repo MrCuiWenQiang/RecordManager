@@ -2,13 +2,13 @@ package com.zt.recordmanager.util;
 
 import android.text.TextUtils;
 
+import com.zt.recordmanager.constant.Url;
+
 import cn.faker.repaymodel.util.PreferencesUtility;
 
 public class HttpUtil {
-    private final static String ip_address = "192.168.0.1";
     private final static String IPKEY = "IPKEY";
     private final static String PORTKEY = "PORTKEY";
-    private final static int port = 8090;
 
     public static void settingHttpSetting(String ip_address, int port) {
         PreferencesUtility.setPreferencesField(IPKEY, ip_address);
@@ -22,7 +22,7 @@ public class HttpUtil {
     public static String getHttpSetting_ip() {
         String nowIp = PreferencesUtility.getPreferencesAsString(IPKEY);
         if (TextUtils.isEmpty(nowIp)) {
-            return ip_address;
+            return Url.ip;
         } else {
             return nowIp;
         }
@@ -31,7 +31,7 @@ public class HttpUtil {
     public static int getHttpSetting_port() {
         int nowPort = PreferencesUtility.getPreferencesAsInt(PORTKEY);
         if (nowPort <= 0) {
-            return port;
+            return Url.port;
         } else {
             return nowPort;
         }

@@ -6,7 +6,6 @@ import android.util.SparseArray;
 
 import com.zt.recordmanager.constant.Url;
 import com.zt.recordmanager.contract.CheckContract;
-import com.zt.recordmanager.model.http.CheckBean;
 import com.zt.recordmanager.model.http.FrameCheckBean;
 import com.zt.recordmanager.model.http.FrameRFIDBean;
 import com.zt.recordmanager.util.RFIDUtil;
@@ -35,7 +34,6 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
                 if (getView() != null) {
                     getView().scanLabel_Loading("已扫描到标签,正在确定位置.");
                 }
-                if (datas == null) {
                     HttpHelper.get(Url.GETFRAMEID, new HttpCallback() {
                         @Override
                         public void onSuccess(String result) {
@@ -60,9 +58,7 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
                             }
                         }
                     });
-                } else {
-                    ratio(tag);
-                }
+
             }
 
             @Override
@@ -112,7 +108,11 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
         rfidUtil.readInventory(new RFIDUtil.RFIDReadInventoryAction() {
             @Override
             public void success(String tag) {
-                if (datas.size() == 0) {
+                if (!tag.startsWith("E2E2")){
+                    return;
+                }
+
+                if (datas.size() <= 0) {
                     datas.put(0, tag);
                     if (getView() != null) {
                         getView().scanNewFile(tag, datas.size());
@@ -171,10 +171,11 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
         List<FrameCheckBean> updatas = new ArrayList<>();
         for (int i = 0; i < datas.size(); i++) {
             String item = datas.valueAt(i);
-            updatas.add(new FrameCheckBean(item));
+            updatas.add(new FrameCheckBean(item,item));
         }
+        updatas.add(new FrameCheckBean(frameRFID,frameRFID));
 
-        HttpHelper.post(Url.POSTRFID, new CheckBean(frameRFID, updatas), new HttpCallback() {
+        HttpHelper.post(Url.POSTRFID,updatas , new HttpCallback() {
             @Override
             public void onSuccess(String data) {
                 if (getView() != null) {
@@ -190,4 +191,6 @@ public class CheckPresenter extends BaseMVPPresenter<CheckContract.View> impleme
             }
         });
     }
+
+
 }

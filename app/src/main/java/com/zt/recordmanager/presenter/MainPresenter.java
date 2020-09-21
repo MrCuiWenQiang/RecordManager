@@ -27,10 +27,10 @@ public class MainPresenter extends BaseMVPPresenter<MainContract.View> implement
         MainGridBean d6 = new MainGridBean("关于", R.mipmap.grid_about,R.color.grid_six, AboutActivity.class);
 
 
-        datas.add(d1);
+//        datas.add(d1);
         datas.add(d2);
-        datas.add(d3);
-        datas.add(d4);
+//        datas.add(d3);
+//        datas.add(d4);
         datas.add(d5);
         datas.add(d6);
         getView().settingGrid(datas);
